@@ -54,7 +54,9 @@ public class MapsWrapper {
 			wayp += "&waypoints=";
 			for (String s : waypoints) {
 				wayp += s;
+				if(!s.equals("")){
 				wayp += '|';
+				}
 			}
 			wayp = wayp.substring(0, wayp.length() - 1);
 		}
@@ -64,7 +66,6 @@ public class MapsWrapper {
 
 		try {
 			mapsUrl = new URL(urlString);
-
 		} catch (MalformedURLException e) {
 			LOG.severe("Built an invalid URL");
 		}

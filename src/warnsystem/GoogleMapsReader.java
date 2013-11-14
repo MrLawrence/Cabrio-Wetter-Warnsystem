@@ -2,31 +2,28 @@ package warnsystem;
 
 import java.awt.Point;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
 import nu.xom.Builder;
 import nu.xom.Document;
 import nu.xom.ParsingException;
+import nu.xom.ValidityException;
 
 public class GoogleMapsReader {
 	private final static Logger LOG = Logger.getLogger(WeatherWrapper.class
 			.getName());
+	MapsWrapper wrap = new MapsWrapper();
+	Builder parser = new Builder();
 
-	Builder parser;
-
-	public GoogleMapsReader(String text) {
+	public HashMap<String, Point> getCoordinates(String origin, String destination, ArrayList<String> waypoints) {
+		wrap.getXML(origin, destination, waypoints);
 		try {
-			parser = new Builder();
-			Document doc = parser.build(text);
-		} catch (ParsingException ex) {
-			LOG.severe("Couldn't parse XML");
-		} catch (IOException e) {
-			LOG.severe("Couldn't read data");
+			Document doc = parser.build(search);
+		} catch (ParsingException | IOException e) {
+			e.printStackTrace();
 		}
-	}
-
-	public HashMap<String, Point> getCoordinates() {
 
 	}
 }
